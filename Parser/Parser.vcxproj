@@ -112,13 +112,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Lexicon\Lexicon\Lexicon.cpp" />
-    <ClCompile Include="..\..\..\Lexicon\Lexicon\scan.cpp" />
     <ClCompile Include="..\..\..\Lexicon\Lexicon\Token.cpp" />
     <ClCompile Include="parser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Lexicon\Lexicon\Lexicon.h" />
-    <ClInclude Include="..\..\..\Lexicon\Lexicon\scan.h" />
     <ClInclude Include="..\..\..\Lexicon\Lexicon\Token.h" />
     <ClInclude Include="parser.h" />
   </ItemGroup>

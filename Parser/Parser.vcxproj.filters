@@ -18,9 +18,6 @@
     <ClCompile Include="..\..\..\Lexicon\Lexicon\Lexicon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Lexicon\Lexicon\scan.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Lexicon\Lexicon\Token.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -30,9 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Lexicon\Lexicon\Lexicon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Lexicon\Lexicon\scan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Lexicon\Lexicon\Token.h">
