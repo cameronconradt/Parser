@@ -33,7 +33,7 @@ void parser::start()
 }
 void parser::match(int in)
 {
-	if (mylex->gettoken(pos+1) != in)
+	if (mylex->gettoken(pos) != in)
 	{
 		throw pos;
 	}
@@ -45,9 +45,24 @@ void parser::parse(int token)
 		switch (token)
 		{
 		case datalogProgram:
-			if (mylex->gettoken(pos) == SCHEMES)
+			try {
+				match(SCHEMES);
+				}
+			catch (int)
 			{
-				
+				try {
+					match(FACTS);
+				}
+				catch (int)
+				{
+					try {
+						match(RULES);
+					}
+					catch (int)
+					{
+						match(QUERIES);
+					}
+				}
 			}
 			break;
 		case scheme:
