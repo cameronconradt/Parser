@@ -111,14 +111,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Lexicon\Lexicon\Lexicon.cpp" />
-    <ClCompile Include="..\..\..\Lexicon\Lexicon\Token.cpp" />
+    <ClCompile Include="Lexicon.cpp" />
     <ClCompile Include="parser.cpp" />
+    <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Lexicon\Lexicon\Lexicon.h" />
-    <ClInclude Include="..\..\..\Lexicon\Lexicon\Token.h" />
+    <ClInclude Include="Lexicon.h" />
     <ClInclude Include="parser.h" />
+    <ClInclude Include="Token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

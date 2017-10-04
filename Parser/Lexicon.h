@@ -17,11 +17,16 @@ public:
 	string tostring();
 	void readin(char in);
 	void filter();
-	string gettoken(int pos);
+	int gettoken(int pos);
 protected:
 	vector<Token*> tokens;
 	vector<char> chars;
 	int endline;
+	const enum tokens {
+		datalogProgram, scheme, schemeList, idList, fact, factList, rule, ruleList, headPredicate, predicate, predicateList,
+		parameter, parameterList, expression, operators, query, queryList, stringList, COMMA, PERIOD, Q_MARK, LEFT_PAREN,
+		RIGHT_PAREN, COLON, COLON_DASH, MULTIPLY, ADD, SCHEMES, FACTS, RULES, QUERIES, ID, STRING
+	};
 	int id(int line, int pos);
 	void comma(int line);
 	void period(int line);

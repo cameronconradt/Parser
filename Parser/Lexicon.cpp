@@ -18,7 +18,7 @@ string Lexicon::tostring()
 	for (int i = 0; i < tokens.size(); i++)
 	{
 		//(Token_Type,"Value",Line_Number)
-		output <<  "\(" << tokens[i]->gettype() << ",\"" + tokens[i]->gettext() << "\"," + tokens[i]->getline() << ")\n";
+		output << "\(" << tokens[i]->gettype() << ",\"" + tokens[i]->gettext() << "\"," + tokens[i]->getline() << ")\n";
 	}
 	output << "Total Tokens = " << tokens.size();
 	output << "\n";
@@ -56,7 +56,7 @@ void Lexicon::filter()
 			case ')': right_paren(startline);
 				break;
 			case ':':
-				if (chars[i+1] == '-')
+				if (chars[i + 1] == '-')
 				{
 					colon_dash(startline);
 					i++;
@@ -85,7 +85,7 @@ void Lexicon::filter()
 			}
 		}
 	}
-		eof(endline);
+	eof(endline);
 }
 void Lexicon::comma(int line)
 {
@@ -157,7 +157,7 @@ int Lexicon::line_comment(int line, int pos)
 	{
 		if (chars[i] == '\n')
 		{
-			endofline = i-1;
+			endofline = i - 1;
 		}
 		else
 		{
@@ -172,7 +172,7 @@ int Lexicon::addstring(int line, int pos)
 {
 	string text = "'";
 	int found = 0;
-	for (int i = pos+1; found == 0; i++)
+	for (int i = pos + 1; found == 0; i++)
 	{
 		text += chars[i];
 		if (chars[i] == '\'')
@@ -182,7 +182,7 @@ int Lexicon::addstring(int line, int pos)
 			else
 				found = i;
 		}
-		else if (i == chars.size()-1)
+		else if (i == chars.size() - 1)
 		{
 			endline = line;
 			return undefined(line, pos);
@@ -204,7 +204,7 @@ int Lexicon::block_comment(int line, int pos)
 	for (int i = pos + 2; found == 0; i++)
 	{
 		text += chars[i];
-		if (chars[i-1] == '|' && chars[i] == '#')
+		if (chars[i - 1] == '|' && chars[i] == '#')
 		{
 			found = i;
 		}
@@ -234,7 +234,7 @@ int Lexicon::undefined(int line, int pos)
 		{
 			endline++;
 		}
-		if (i == chars.size()-1)
+		if (i == chars.size() - 1)
 		{
 			found = i;
 		}
@@ -254,7 +254,7 @@ int Lexicon::schemes(int line, int pos)
 	{
 		Token* mytoken = new Token("SCHEMES", text, line);
 		tokens.push_back(mytoken);
-		return pos+6;
+		return pos + 6;
 	}
 	return pos;
 }
@@ -316,11 +316,11 @@ int Lexicon::id(int line, int pos)
 		toreturn = facts(line, pos);
 		if (toreturn != pos)
 			return toreturn;
-	case 'R' :
+	case 'R':
 		toreturn = facts(line, pos);
 		if (toreturn != pos)
 			return toreturn;
-	case 'Q' :
+	case 'Q':
 		toreturn = queries(line, pos);
 		if (toreturn != pos)
 			return toreturn;
@@ -330,7 +330,7 @@ int Lexicon::id(int line, int pos)
 		for (int i = pos; toreturn == 0; i++)
 		{
 			text += chars[i];
-			if (isspace(chars[i + 1]) || chars[i+1] == '\n' || !isalpha(chars[i+1]))
+			if (isspace(chars[i + 1]) || chars[i + 1] == '\n' || !isalpha(chars[i + 1]))
 				toreturn = i;
 		}
 		Token* mytoken = new Token("ID", text, line);
@@ -339,10 +339,38 @@ int Lexicon::id(int line, int pos)
 	}
 
 }
-string Lexicon::gettoken(int pos)
+int Lexicon::gettoken(int pos)
 {
 	if (pos < tokens.size())
-		return tokens[pos]->gettext();
-	else
-		return NULL;
+		if (tokens[pos]->gettype() == "COMMA")
+			return COMMA;
+	if (tokens[pos]->gettype() == "PERIOD")
+		return PERIOD;
+	if (tokens[pos]->gettype() == "Q_MARK")
+		return Q_MARK;
+	if (tokens[pos]->gettype() == "LEFT_PAREN")
+		return LEFT_PAREN;
+	if (tokens[pos]->gettype() == "RIGHT_PAREN")
+		return RIGHT_PAREN;
+	if (tokens[pos]->gettype() == "COLON")
+		return COLON;
+	if (tokens[pos]->gettype() == "COLON_DASH")
+		return COLON_DASH;
+	if (tokens[pos]->gettype() == "MULTIPLY")
+		return MULTIPLY;
+	if (tokens[pos]->gettype() == "ADD")
+		return ADD;
+	if (tokens[pos]->gettype() == "SCHEMES")
+		return SCHEMES;
+	if (tokens[pos]->gettype() == "FACTS")
+		return FACTS;
+	if (tokens[pos]->gettype() == "RULES")
+		return RULES;
+	if (tokens[pos]->gettype() == "QUERIES")
+		return QUERIES;
+	if (tokens[pos]->gettype() == "ID")
+		return ID;
+	if (tokens[pos]->gettype() == "STRING")
+		return STRING;
+	return NULL;
 }

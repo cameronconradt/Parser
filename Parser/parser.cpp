@@ -47,7 +47,7 @@ void parser::parse(int token)
 		case datalogProgram:
 			if (mylex->gettoken(pos) == SCHEMES)
 			{
-				if
+				
 			}
 			break;
 		case scheme:
