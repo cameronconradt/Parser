@@ -27,7 +27,12 @@ void parser::start()
 		}
 		mylex->filter();
 		tokens start = datalogProgram;
-		parse(start);
+		try {
+			parse(start);
+		}
+		catch(int){
+
+		}
 	}
 
 }
@@ -40,8 +45,6 @@ void parser::match(int in)
 }
 void parser::parse(int token)
 {
-	try
-	{
 		switch (token)
 		{
 		case datalogProgram:

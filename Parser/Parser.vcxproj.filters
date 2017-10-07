@@ -24,6 +24,24 @@
     <ClCompile Include="Token.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Schemes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Queries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Facts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DatalogProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="parser.h">
@@ -33,6 +51,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Token.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Schemes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Queries.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Facts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DatalogProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -111,13 +111,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DatalogProgram.cpp" />
+    <ClCompile Include="Facts.cpp" />
     <ClCompile Include="Lexicon.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="parser.cpp" />
+    <ClCompile Include="Queries.cpp" />
+    <ClCompile Include="Rules.cpp" />
+    <ClCompile Include="Schemes.cpp" />
     <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DatalogProgram.h" />
+    <ClInclude Include="Facts.h" />
     <ClInclude Include="Lexicon.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="parser.h" />
+    <ClInclude Include="Queries.h" />
+    <ClInclude Include="Rules.h" />
+    <ClInclude Include="Schemes.h" />
     <ClInclude Include="Token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
