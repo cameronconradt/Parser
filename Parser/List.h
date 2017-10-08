@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
-
+#include "Token.h"
+#include <vector>
 using namespace std;
 
 
@@ -11,9 +12,9 @@ class List
 public:
 	List();
 	~List();
-	void additem(string input);
-	string getList();
+	void additem(Token* input);
+	string tostring();
 protected:
-	string full_list;
+	vector<Token*> mytokens;
 };
 

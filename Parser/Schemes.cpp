@@ -4,6 +4,7 @@
 
 Schemes::Schemes(Lexicon* Lex)
 {
+	mylex = Lex;
 }
 
 

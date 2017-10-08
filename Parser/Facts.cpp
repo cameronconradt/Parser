@@ -4,6 +4,7 @@
 
 Facts::Facts(Lexicon* Lex)
 {
+	mylex = Lex;
 }
 
 

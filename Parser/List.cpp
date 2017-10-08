@@ -4,7 +4,7 @@
 
 List::List()
 {
-	full_list = "";
+
 }
 
 
@@ -12,12 +12,17 @@ List::~List()
 {
 }
 
-void List::additem(string input)
+void List::additem(Token* input)
 {
-	full_list += input;
+	mytokens.push_back(input);
 }
 
-string List::getList()
+string List::tostring()
 {
-	return full_list;
+	string toreturn = "";
+	for (int i = 0; i < mytokens.size(); i++)
+	{
+		toreturn += mytokens[i]->gettext();
+	}
+		return toreturn;
 }

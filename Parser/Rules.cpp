@@ -4,6 +4,7 @@
 
 Rules::Rules(Lexicon* Lex)
 {
+	mylex = Lex;
 }
 
 

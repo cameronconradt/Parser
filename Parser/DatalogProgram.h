@@ -16,4 +16,3 @@ protected:
 	Facts* facts;
 	Rules* rules;
 };
-
