@@ -4,5 +4,7 @@ class Predicate
 public:
 	Predicate();
 	~Predicate();
+protected:
+
 };
 
