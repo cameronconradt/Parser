@@ -1,8 +1,22 @@
 #pragma once
+#include "Lexicon.h"
+#include "Id.h"
 class Scheme
 {
 public:
-	Scheme();
+	Scheme(Lexicon* Lex, int pos);
 	~Scheme();
+protected:
+	Lexicon* mylex;
+	int pos;
+	string tostring();
+	vector<Id*> columnNames;
+	Id* schemeId;
+	void fillcolumns();
+	const enum tokens {
+		datalogProgram, scheme, schemeList, idList, fact, factList, rule, ruleList, headPredicate, predicate, predicateList,
+		parameter, parameterList, expression, operators, query, queryList, stringList, COMMA, PERIOD, Q_MARK, LEFT_PAREN,
+		RIGHT_PAREN, COLON, COLON_DASH, MULTIPLY, ADD, SCHEMES, FACTS, RULES, QUERIES, ID, STRING
+	};
 };
 

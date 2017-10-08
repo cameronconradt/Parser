@@ -18,6 +18,7 @@ public:
 	void readin(char in);
 	void filter();
 	int gettoken(int pos);
+	Token* returnToken(int pos);
 protected:
 	vector<Token*> tokens;
 	vector<char> chars;

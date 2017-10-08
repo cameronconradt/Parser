@@ -2,8 +2,9 @@
 
 
 
-Id::Id()
+Id::Id(Token* token)
 {
+	id = token;
 }
 
 

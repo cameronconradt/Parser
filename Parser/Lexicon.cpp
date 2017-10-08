@@ -374,3 +374,7 @@ int Lexicon::gettoken(int pos)
 		return STRING;
 	return NULL;
 }
+Token* Lexicon::returnToken(int pos)
+{
+	return tokens[i];
+}
