@@ -6,7 +6,9 @@ class Queries
 public:
 	Queries(Lexicon* Lex);
 	~Queries();
+	string tostring();
 protected:
 	Lexicon* mylex;
+	List mylist;
 };
 

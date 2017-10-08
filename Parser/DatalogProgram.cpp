@@ -14,3 +14,11 @@ DatalogProgram::DatalogProgram(Lexicon* Lex)
 DatalogProgram::~DatalogProgram()
 {
 }
+string DatalogProgram::tostring()
+{
+	return schemes->tostring() + '\n' +
+		facts->tostring() + '\n' +
+		rules->tostring() + '\n' +
+		queries->tostring();
+
+}

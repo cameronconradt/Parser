@@ -6,7 +6,9 @@ class Rules
 public:
 	Rules(Lexicon* Lex);
 	~Rules();
+	string tostring();
 protected:
 	Lexicon* mylex;
+	List mylist;
 };
 

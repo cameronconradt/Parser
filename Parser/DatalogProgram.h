@@ -9,6 +9,7 @@ class DatalogProgram
 public:
 	DatalogProgram(Lexicon* lex);
 	~DatalogProgram();
+	string tostring();
 protected:
 	Schemes* schemes;
 	Queries* queries;

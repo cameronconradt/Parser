@@ -11,3 +11,7 @@ Queries::Queries(Lexicon* Lex)
 Queries::~Queries()
 {
 }
+string Queries::tostring()
+{
+	return mylist.getList();
+}
