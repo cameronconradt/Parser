@@ -2,7 +2,7 @@
 
 
 
-Rules::Rules()
+Rules::Rules(Lexicon* Lex)
 {
 }
 

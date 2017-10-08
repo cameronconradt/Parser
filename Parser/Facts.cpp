@@ -2,7 +2,7 @@
 
 
 
-Facts::Facts()
+Facts::Facts(Lexicon* Lex)
 {
 }
 

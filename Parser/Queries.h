@@ -1,8 +1,12 @@
 #pragma once
+#include "List.h"
+#include "Lexicon.h"
 class Queries
 {
 public:
-	Queries();
+	Queries(Lexicon* Lex);
 	~Queries();
+protected:
+	Lexicon* mylex;
 };
 

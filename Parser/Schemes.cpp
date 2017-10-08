@@ -2,7 +2,7 @@
 
 
 
-Schemes::Schemes()
+Schemes::Schemes(Lexicon* Lex)
 {
 }
 

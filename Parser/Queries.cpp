@@ -2,8 +2,9 @@
 
 
 
-Queries::Queries()
+Queries::Queries(Lexicon* Lex)
 {
+	mylex = Lex;
 }
 
 

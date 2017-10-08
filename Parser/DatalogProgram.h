@@ -1,8 +1,18 @@
 #pragma once
+#include "Lexicon.h"
+#include "Rules.h"
+#include "Facts.h"
+#include "Queries.h"
+#include "Schemes.h"
 class DatalogProgram
 {
 public:
-	DatalogProgram();
+	DatalogProgram(Lexicon* lex);
 	~DatalogProgram();
+protected:
+	Schemes* schemes;
+	Queries* queries;
+	Facts* facts;
+	Rules* rules;
 };
 

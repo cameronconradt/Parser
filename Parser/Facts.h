@@ -1,8 +1,12 @@
 #pragma once
+#include "List.h"
+#include "Lexicon.h"
 class Facts
 {
 public:
-	Facts();
+	Facts(Lexicon* Lex);
 	~Facts();
+protected:
+	Lexicon* mylex;
 };
 
