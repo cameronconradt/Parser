@@ -13,11 +13,13 @@ Schemes::~Schemes()
 }
 string Schemes::tostring()
 {
-	string toreturn = "";
+	stringstream toreturn("Schemes(");
+	toreturn << schemes.size() << ")\n";
 	for (int i = 0; i < schemes.size(); i++)
 	{
-		toreturn += schemes[i]->tostring();
+		toreturn << schemes[i]->tostring() << "\n";
 	}
+	return toreturn.str();
 }
 void Schemes::add()
 {

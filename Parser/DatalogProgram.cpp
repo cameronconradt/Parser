@@ -16,9 +16,9 @@ DatalogProgram::~DatalogProgram()
 }
 string DatalogProgram::tostring()
 {
-	return schemes->tostring() + '\n' +
-		facts->tostring() + '\n' +
-		rules->tostring() + '\n' +
+	return schemes->tostring()  +
+		facts->tostring()  +
+		rules->tostring()  +
 		queries->tostring();
 
 }

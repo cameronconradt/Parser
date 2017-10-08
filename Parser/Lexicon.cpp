@@ -376,5 +376,5 @@ int Lexicon::gettoken(int pos)
 }
 Token* Lexicon::returnToken(int pos)
 {
-	return tokens[i];
+	return tokens[pos];
 }

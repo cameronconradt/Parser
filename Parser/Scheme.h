@@ -6,10 +6,10 @@ class Scheme
 public:
 	Scheme(Lexicon* Lex, int pos);
 	~Scheme();
+	string tostring();
 protected:
 	Lexicon* mylex;
 	int pos;
-	string tostring();
 	vector<Id*> columnNames;
 	Id* schemeId;
 	void fillcolumns();

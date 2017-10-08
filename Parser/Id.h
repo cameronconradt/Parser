@@ -7,7 +7,7 @@ class Id :
 public:
 	Id(Token* token);
 	~Id();
+	string tostring();
 protected:
 	Token* id;
 };
-

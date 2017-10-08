@@ -11,3 +11,8 @@ Id::Id(Token* token)
 Id::~Id()
 {
 }
+
+string Id::tostring()
+{
+	return id->gettext();
+}

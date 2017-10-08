@@ -2,6 +2,7 @@
 #include "Scheme.h"
 #include "Lexicon.h"
 #include <vector>
+#include <sstream>
 class Schemes
 {
 public:
