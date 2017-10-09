@@ -4,7 +4,7 @@
 class Scheme
 {
 public:
-	Scheme(Lexicon* Lex, int pos);
+	Scheme(Lexicon* Lex, int inpos);
 	~Scheme();
 	string tostring();
 protected:

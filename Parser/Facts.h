@@ -1,6 +1,7 @@
 #pragma once
-#include "List.h"
+#include "Fact.h"
 #include "Lexicon.h"
+#include <sstream>
 class Facts
 {
 public:
@@ -9,6 +10,12 @@ public:
 	string tostring();
 protected:
 	Lexicon* mylex;
-	List mylist;
+	vector<Fact*> facts;
+	void add();
+	const enum tokens {
+		datalogProgram, scheme, schemeList, idList, fact, factList, rule, ruleList, headPredicate, predicate, predicateList,
+		parameter, parameterList, expression, operators, query, queryList, stringList, COMMA, PERIOD, Q_MARK, LEFT_PAREN,
+		RIGHT_PAREN, COLON, COLON_DASH, MULTIPLY, ADD, SCHEMES, FACTS, RULES, QUERIES, ID, STRING
+	};
 };
 

@@ -2,17 +2,11 @@
 
 
 
-Id::Id(Token* token)
+Id::Id(Token* token): Parameter(token)
 {
-	id = token;
 }
 
 
 Id::~Id()
 {
-}
-
-string Id::tostring()
-{
-	return id->gettext();
 }
