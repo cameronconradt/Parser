@@ -1,14 +1,11 @@
 #pragma once
 #include "Token.h"
-#include <string>
+
 class Parameter
 {
 public:
-	Parameter(Token* token);
+	Parameter();
 	~Parameter();
-	string tostring();
-protected:
-	Token* mytoken;
-
+	virtual string tostring();
 };
 

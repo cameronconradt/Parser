@@ -2,16 +2,16 @@
 
 
 
-Parameter::Parameter(Token* token)
+Parameter::Parameter()
 {
-	mytoken = token;
 }
 
 
 Parameter::~Parameter()
 {
 }
+
 string Parameter::tostring()
 {
-	return mytoken->gettext();
+
 }

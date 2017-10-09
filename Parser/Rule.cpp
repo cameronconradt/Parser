@@ -28,11 +28,17 @@ void Rule::fillpredicates()
 {
 	head = new HeadPredicate(mylex->returnToken(pos));
 	Predicate* temppredicate;
-	for (int i = pos; mylex->gettoken(i) == RIGHT_PAREN; i++)
+	for (int i = pos; mylex->gettoken(i-1) == COLON_DASH; i++)
 		pos = i;
-	for (int i = pos + 1; mylex->gettoken(i - 1) != PERIOD; i++)
+	temppredicate = new Predicate(mylex->returnToken(pos));
+	predicates.push_back(temppredicate);
+	for (int i = pos; mylex->gettoken(i) != PERIOD; i++)
 	{
-		temppredicate = new Predicate(mylex->returnToken(i));
-		predicates.push_back(temppredicate);
+		if (mylex->gettoken(i - 1) == COMMA)
+		{
+			temppredicate = new Predicate(mylex->returnToken(i));
+			predicates.push_back(temppredicate);
+		}
 	}
+
 }

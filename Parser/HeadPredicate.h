@@ -1,7 +1,7 @@
 #pragma once
 #include "Predicate.h"
 class HeadPredicate :
-	protected Predicate
+	public Predicate
 {
 public:
 	HeadPredicate();
