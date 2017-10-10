@@ -1,14 +1,17 @@
 #pragma once
 #include <fstream>
 #include "Lexicon.h"
-#include "scan.h"
+#include "DatalogProgram.h"
 
 class parser
 {
 public:
 	parser(char* infilename);
 	~parser();
+	string simpletostring();
+	string tostring();
 protected:
+	DatalogProgram* mydata;
 	char* filename;
 	int pos;
 	int furthestfail;

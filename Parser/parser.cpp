@@ -29,6 +29,8 @@ void parser::start()
 		tokens start = datalogProgram;
 		try {
 			parse(start);
+			furthestfail = 0;
+			mydata = new DatalogProgram(mylex);
 		}
 		catch(int error){
 			if (error > furthestfail)
@@ -108,10 +110,21 @@ void parser::parse(int token)
 			}
 			catch (int error)
 			{
-				pos++;
+				if (error > furthestfail)
+					furthestfail = error;
 			}
 			break;
 		case idList:
+			try {
+				match(COMMA);
+				match(ID);
+				parse(idList);
+			}
+			catch (int error)
+			{
+				if (error > furthestfail)
+					furthestfail = error;
+			}
 			break;
 		case fact:
 			match(ID);
@@ -122,6 +135,15 @@ void parser::parse(int token)
 			match(PERIOD);
 			break;
 		case factList:
+			try {
+				parse(fact);
+				parse(factList);
+			}
+			catch (int error)
+			{
+				if (error > furthestfail)
+					furthestfail = error;
+			}
 			break;
 		case rule:
 			parse(headPredicate);
@@ -131,6 +153,15 @@ void parser::parse(int token)
 			match(PERIOD);
 			break;
 		case ruleList:
+			try {
+				parse(rule);
+				parse(ruleList);
+			}
+			catch (int error)
+			{
+				if (error > furthestfail)
+					furthestfail = error;
+			}
 			break;
 		case headPredicate:
 			match(ID);
@@ -147,6 +178,16 @@ void parser::parse(int token)
 			match(RIGHT_PAREN);
 			break;
 		case predicateList:
+			try {
+				match(COMMA);
+				parse(predicate);
+				parse(predicateList);
+			}
+			catch (int error)
+			{
+				if (error > furthestfail)
+					furthestfail = error;
+			}
 			break;
 		case parameter:
 			try {
@@ -169,6 +210,16 @@ void parser::parse(int token)
 
 			break;
 		case parameterList:
+			try {
+				match(COMMA);
+				parse(parameter);
+				parse(parameterList);
+			}
+			catch (int error)
+			{
+				if (error > furthestfail)
+					furthestfail = error;
+			}
 			break;
 		case expression:
 			match(LEFT_PAREN);
@@ -193,8 +244,59 @@ void parser::parse(int token)
 			match(Q_MARK);
 			break;
 		case queryList:
+			try {
+				parse(query);
+				parse(queryList);
+			}
+			catch (int error)
+			{
+				if (error > furthestfail)
+					furthestfail = error;
+			}
 			break;
 		case stringList:
+			try {
+				match(COMMA);
+				match(STRING);
+				parse(stringList);
+			}
+			catch (int error)
+			{
+				if (error > furthestfail)
+					furthestfail = error;
+			}
 			break;
 		}
 }
+string parser::simpletostring()
+{
+	if (furthestfail == 0)
+		return "Success!";
+	else
+	{
+		stringstream ss;
+		ss << "Failure!\n\t";
+		Token* mytoken = mylex->returnToken(furthestfail);
+		ss << "\(" << mytoken->gettype() << ",\"" + mytoken->gettext() << "\"," + mytoken->getline() << ")\n";
+		return ss.str();
+	}
+}
+string parser::tostring()
+{
+	if (furthestfail == 0)
+	{
+		stringstream ss;
+		ss << "Success!\n";
+		ss << mydata->tostring();
+		return ss.str();
+	}
+	else
+	{
+		stringstream ss;
+		ss << "Failure!\n\t";
+		Token* mytoken = mylex->returnToken(furthestfail);
+		ss << "\(" << mytoken->gettype() << ",\"" + mytoken->gettext() << "\"," + mytoken->getline() << ")\n";
+		return ss.str();
+	}
+}
+
