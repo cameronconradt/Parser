@@ -26,17 +26,17 @@ string Rule::tostring()
 
 void Rule::fillpredicates()
 {
-	head = new HeadPredicate(mylex->returnToken(pos));
+	head = new HeadPredicate(mylex, pos);
 	Predicate* temppredicate;
 	for (int i = pos; mylex->gettoken(i-1) == COLON_DASH; i++)
 		pos = i;
-	temppredicate = new Predicate(mylex->returnToken(pos));
+	temppredicate = new Predicate(mylex, pos);
 	predicates.push_back(temppredicate);
 	for (int i = pos; mylex->gettoken(i) != PERIOD; i++)
 	{
 		if (mylex->gettoken(i - 1) == COMMA)
 		{
-			temppredicate = new Predicate(mylex->returnToken(i));
+			temppredicate = new Predicate(mylex, pos);
 			predicates.push_back(temppredicate);
 		}
 	}

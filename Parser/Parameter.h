@@ -6,6 +6,6 @@ class Parameter
 public:
 	Parameter();
 	~Parameter();
-	virtual string tostring();
+	virtual string tostring()= 0;
 };
 

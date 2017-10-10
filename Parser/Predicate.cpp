@@ -6,6 +6,7 @@ Predicate::Predicate(Lexicon* lex, int inpos)
 {
 	mylex = lex;
 	pos = inpos;
+	fillparameters();
 }
 
 

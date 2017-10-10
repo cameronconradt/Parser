@@ -11,7 +11,3 @@ Parameter::~Parameter()
 {
 }
 
-string Parameter::tostring()
-{
-
-}

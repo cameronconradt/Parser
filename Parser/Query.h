@@ -1,7 +1,10 @@
 #pragma once
 #include "Predicate.h"
 class Query :
-	protected Predicate
+	public Predicate
 {
+public:
+	Query(Lexicon* lex, int inpos);
+	~Query();
 };
 

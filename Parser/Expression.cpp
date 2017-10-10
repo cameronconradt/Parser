@@ -18,8 +18,9 @@ string Expression::tostring()
 {
 	stringstream toreturn;
 	toreturn << parameters[0]->tostring();
-	toreturn << myoperator->gettext;
+	toreturn << myoperator->gettext();
 	toreturn << parameters[1]->tostring();
+	return toreturn.str();
 }
 
 void Expression::fillexpr()

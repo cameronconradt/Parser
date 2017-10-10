@@ -13,5 +13,5 @@ String::~String()
 }
 string String::tostring()
 {
-	return mytoken->gettext;
+	return mytoken->gettext();
 }

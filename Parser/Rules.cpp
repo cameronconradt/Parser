@@ -38,14 +38,14 @@ void Rules::add()
 	bool done = false;
 	for (int i = foundfirst; !done; i++)
 	{
-		if (mylex->gettoken(i - 1) != (COLON_DASH || COMMA))
+		if (mylex->gettoken(i - 1) !=( COLON_DASH || COMMA))
 		{
 			if (mylex->gettoken(i) == ID)
 			{
 				if (mylex->gettoken(i + 1) == LEFT_PAREN)
 				{
 					try {
-						rule* myrule = new Rule(mylex, i);
+						Rule* myrule = new Rule(mylex, i);
 						rules.push_back(myrule);
 					}
 					catch (int)

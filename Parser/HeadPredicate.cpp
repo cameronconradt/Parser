@@ -2,8 +2,9 @@
 
 
 
-HeadPredicate::HeadPredicate()
+HeadPredicate::HeadPredicate(Lexicon* lex, int inpos) : Predicate(lex, inpos)
 {
+
 }
 
 

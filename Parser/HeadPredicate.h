@@ -1,10 +1,11 @@
 #pragma once
 #include "Predicate.h"
+#include "Token.h"
 class HeadPredicate :
 	public Predicate
 {
 public:
-	HeadPredicate();
+	HeadPredicate(Lexicon* lex, int inpos);
 	~HeadPredicate();
 };
 
