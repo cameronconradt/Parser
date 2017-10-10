@@ -273,13 +273,7 @@ string parser::simpletostring()
 	if (furthestfail == 0)
 		return "Success!";
 	else
-	{
-		stringstream ss;
-		ss << "Failure!\n\t";
-		Token* mytoken = mylex->returnToken(furthestfail);
-		ss << "\(" << mytoken->gettype() << ",\"" + mytoken->gettext() << "\"," + mytoken->getline() << ")\n";
-		return ss.str();
-	}
+		return tostring();
 }
 string parser::tostring()
 {
