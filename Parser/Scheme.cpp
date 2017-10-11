@@ -12,15 +12,25 @@ Scheme::Scheme(Lexicon* Lex, int inpos)
 
 Scheme::~Scheme()
 {
+	delete schemeId;
+	for(auto i = columnNames.begin(); i != columnNames.end(); i++)
+	{
+		
+		delete *i;
+	}
 }
 
 string Scheme::tostring()
 {
 	string toreturn = schemeId->tostring();
+	toreturn += "(";
 	for (int i = 0; i < columnNames.size(); i++)
 	{
+		if(i!=0)
+			toreturn +=",";
 		toreturn += columnNames[i]->tostring();
 	}
+	toreturn += ")";
 	return toreturn;
 }
 void Scheme::fillcolumns()
@@ -29,7 +39,12 @@ void Scheme::fillcolumns()
 	Id* tempid;
 	for (int i = pos + 1; mylex->gettoken(i-1) != RIGHT_PAREN; i++)
 	{
-		tempid = new Id(mylex->returnToken(i));
-		columnNames.push_back(tempid);
+		if(mylex->gettoken(i) == ID)
+		{
+			tempid = new Id(mylex->returnToken(i));
+			columnNames.push_back(tempid);
+		}
 	}
+	if(columnNames.size() == 0)
+		throw 0;
 }

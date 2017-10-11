@@ -5,6 +5,7 @@
 Facts::Facts(Lexicon* Lex)
 {
 	mylex = Lex;
+	add();
 }
 
 
@@ -14,22 +15,43 @@ Facts::~Facts()
 }
 string Facts::tostring()
 {
-	stringstream toreturn("Facts(");
-	toreturn << facts.size() << ")\n";
+	stringstream toreturn("");
+	toreturn << "Facts(";
+	toreturn << facts.size() << "):\n";
 	for (int i = 0; i < facts.size(); i++)
 	{
-		toreturn << facts[i]->tostring() << "\n";
+		toreturn << "  " << facts[i]->tostring() << "\n";
 	}
 	return toreturn.str();
 }
+string Facts::tostringDomain()
+{
+	for(int i = 0; i < facts.size(); i++)
+	{
+		set<string> tempset = facts[i]->returnDomain();
+		for(set<string>::iterator j = tempset.begin(); j !=tempset.end(); j ++)
+		{
+			myset.insert(*j);
+		}
+	}
+	stringstream ss;
+	ss << "Domain(";
+	ss << myset.size();
+	ss << ")\n";
+	for(set<string>::iterator i = myset.begin(); i != myset.end(); i++)
+	{
+		ss << "  " << *i << endl;
+	}
+	return ss.str();
+}
 void Facts::add()
 {
-	int foundfirst = 0;
-	for (int i = 0; !foundfirst; i++)
+	int foundfirst = -1;
+	for (int i = 0; foundfirst == -1; i++)
 	{
 		if (mylex->gettoken(i) == FACTS)
 		{
-			if (mylex->gettoken(i++) == COLON)
+			if (mylex->gettoken(i+1) == COLON)
 			{
 				foundfirst = i;
 			}
@@ -54,3 +76,4 @@ void Facts::add()
 		}
 	}
 }
+

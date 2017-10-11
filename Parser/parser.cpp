@@ -4,14 +4,24 @@
 
 parser::parser(char* infilename)
 {
+	pos = 0;
 	filename = infilename;
-	furthestfail = 0;
+	furthestfail = -1;
+	mylex = new Lexicon();
+	mydata = NULL;
+	schemes = false;
+	facts = false;
+	rules = false;
+	queries = false;
 	start();
 }
 
 
 parser::~parser()
 {
+	delete mylex;
+	if(mydata != NULL)
+		delete mydata;
 }
 
 void parser::start()
@@ -28,8 +38,13 @@ void parser::start()
 		mylex->filter();
 		tokens start = datalogProgram;
 		try {
-			parse(start);
-			furthestfail = 0;
+			for(int i = 0; i < 4; i++)
+				parse(start);
+			if(mylex->gettoken(pos) != end)
+			{
+				throw pos;
+			}
+			furthestfail = -1;
 			mydata = new DatalogProgram(mylex);
 		}
 		catch(int error){
@@ -42,6 +57,7 @@ void parser::start()
 }
 void parser::match(int in)
 {
+	//cout << "match" << endl;
 	if (mylex->gettoken(pos) != in)
 	{
 		throw pos;
@@ -57,28 +73,38 @@ void parser::parse(int token)
 		{
 		case datalogProgram:
 			try {
-				match(SCHEMES);
-				match(COLON);
-				parse(scheme);
-				parse(schemeList);
+					if(schemes)
+						throw furthestfail;
+						//cout << pos << endl;
+					match(SCHEMES);
+					match(COLON);
+					parse(scheme);
+					parse(schemeList);
+					schemes = true;
 				}
 			catch (int error)
 			{
-				pos = temppos;
+				if(facts)
+					throw furthestfail;
+				pos = temppos-1;
 				if (error > furthestfail)
 					furthestfail = error;
 				try {
+					match(RIGHT_PAREN);
 					match(FACTS);
 					match(COLON);
 					parse(fact);
 					parse(factList);
-				}
+			}
 				catch (int errorfacts)
 				{
-					pos = temppos;
+					if(rules)
+						throw errorfacts;
+					pos = temppos-1;
 					if (errorfacts > furthestfail)
 						furthestfail = errorfacts;
 					try {
+						match(PERIOD);
 						match(RULES);
 						match(COLON);
 						parse(rule);
@@ -86,9 +112,12 @@ void parser::parse(int token)
 					}
 					catch (int errorrules)
 					{
-						pos = temppos;
+						if(queries)
+							throw errorrules;
+						pos = temppos-1;
 						if (errorrules > furthestfail)
 							furthestfail = errorrules;
+						match(PERIOD);
 						match(QUERIES);
 						match(COLON);
 						parse(query);
@@ -100,6 +129,7 @@ void parser::parse(int token)
 		case scheme:
 				match(ID);
 				match(LEFT_PAREN);
+				match(ID);
 				parse(idList);
 				match(RIGHT_PAREN);
 			break;
@@ -266,18 +296,20 @@ void parser::parse(int token)
 					furthestfail = error;
 			}
 			break;
+			default:
+			throw pos;
 		}
 }
 string parser::simpletostring()
 {
-	if (furthestfail == 0)
-		return "Success!";
+	if (furthestfail == -1)
+		return "Success!\n";
 	else
 		return tostring();
 }
 string parser::tostring()
 {
-	if (furthestfail == 0)
+	if (furthestfail == -1)
 	{
 		stringstream ss;
 		ss << "Success!\n";

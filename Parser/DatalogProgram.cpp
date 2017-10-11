@@ -13,12 +13,17 @@ DatalogProgram::DatalogProgram(Lexicon* Lex)
 
 DatalogProgram::~DatalogProgram()
 {
+	//delete schemes;
+	//delete facts;
+	//delete rules;
+	//delete queries;
 }
 string DatalogProgram::tostring()
 {
 	return schemes->tostring()  +
 		facts->tostring()  +
 		rules->tostring()  +
-		queries->tostring();
+		queries->tostring() +
+		facts->tostringDomain();
 
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "parser.h"
 #include "DatalogProgram.h"
@@ -7,7 +8,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	if (argc != 1)
+	if (argc == 1)
 	{
 		for (int i = 1; i < 11; i++)
 		{
@@ -16,9 +17,11 @@ int main(int argc, char* argv[])
 			ss << i;
 			ss << ".txt";
 			char* temp = new char();
-			ss >> *temp;
+			ss >> temp;
+			cout << temp << endl;
 			parser* myparse = new parser(temp);
-			myparse->simpletostring();
+			cout << myparse->simpletostring();
+			delete myparse;
 		}
 	}
 	else

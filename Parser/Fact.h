@@ -2,17 +2,21 @@
 #include "Lexicon.h"
 #include "String.h"
 #include "Id.h"
+#include <set>
+#include <string>
 class Fact
 {
 public:
 	Fact(Lexicon* Lex, int inpos);
 	~Fact();
 	string tostring();
+	set<string> returnDomain();
 protected:
 	Lexicon* mylex;
 	int pos;
 	vector<String*> strings;
 	Id* factId;
+	set<string> myset;
 	void fillstrings();
 	enum tokens {
 		datalogProgram, scheme, schemeList, idList, fact, factList, rule, ruleList, headPredicate, predicate, predicateList,

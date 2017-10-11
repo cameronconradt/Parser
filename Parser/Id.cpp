@@ -10,6 +10,7 @@ Id::Id(Token* token)
 
 Id::~Id()
 {
+	delete mytoken;
 }
 
 string Id::tostring()

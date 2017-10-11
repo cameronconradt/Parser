@@ -15,6 +15,7 @@ Token::~Token()
 }
 string Token::gettype()
 {
+	//cout << text << endl;
 	return type;
 }
 string Token::gettext()

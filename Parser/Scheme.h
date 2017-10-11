@@ -1,6 +1,7 @@
 #pragma once
 #include "Lexicon.h"
 #include "Id.h"
+#include <iostream>
 class Scheme
 {
 public:

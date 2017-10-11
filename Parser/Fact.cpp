@@ -17,12 +17,24 @@ Fact::~Fact()
 string Fact::tostring()
 {
 	string toreturn = factId->tostring();
+	toreturn += "(";
 	for (int i = 0; i < strings.size(); i++)
 	{
+		if(i!=0)
+			toreturn+= ",";
 		toreturn += strings[i]->tostring();
 	}
+	toreturn += ").";
 	return toreturn;
 
+}
+set<string> Fact::returnDomain()
+{
+	for(int i = 0; i < strings.size(); i++)
+	{
+		myset.insert(strings[i]->tostring());
+	}
+	return myset;
 }
 void Fact::fillstrings()
 {
@@ -30,7 +42,12 @@ void Fact::fillstrings()
 	String* tempstring;
 	for (int i = pos + 1; mylex->gettoken(i - 1) != PERIOD; i++)
 	{
-		tempstring = new String(mylex->returnToken(i));
-		strings.push_back(tempstring);
+		if(mylex->gettoken(i) == STRING)
+		{		
+			tempstring = new String(mylex->returnToken(i));
+			strings.push_back(tempstring);
+		}
 	}
+	if(strings.size() == 0)
+		throw 0;
 }

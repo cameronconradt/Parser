@@ -10,6 +10,16 @@ Lexicon::Lexicon()
 
 Lexicon::~Lexicon()
 {
+	for(auto i = tokens.begin(); i != tokens.end(); i++)
+	{
+		delete *i;
+	}
+	tokens.clear();
+	/*
+	for(int i = 0; i < tokens.size(); i++)
+	{
+		delete tokens[i];
+	}*/
 }
 
 string Lexicon::tostring()
@@ -31,10 +41,12 @@ void Lexicon::readin(char in)
 void Lexicon::filter()
 {
 	chars.pop_back();
-	chars.pop_back();
+	if(chars.size() > 2)
+		chars.pop_back();
 	int startline;
 	for (int i = 0; i < chars.size(); i++)
 	{
+		//cout << chars.size() << endl;
 		startline = endline;
 		if (isalpha(chars[i]))
 		{
@@ -317,7 +329,7 @@ int Lexicon::id(int line, int pos)
 		if (toreturn != pos)
 			return toreturn;
 	case 'R':
-		toreturn = facts(line, pos);
+		toreturn = rules(line, pos);
 		if (toreturn != pos)
 			return toreturn;
 	case 'Q':
@@ -341,38 +353,42 @@ int Lexicon::id(int line, int pos)
 }
 int Lexicon::gettoken(int pos)
 {
-	if (pos < tokens.size())
+	if (pos < tokens.size() && pos >= 0)
+	{
 		if (tokens[pos]->gettype() == "COMMA")
 			return COMMA;
-	if (tokens[pos]->gettype() == "PERIOD")
-		return PERIOD;
-	if (tokens[pos]->gettype() == "Q_MARK")
-		return Q_MARK;
-	if (tokens[pos]->gettype() == "LEFT_PAREN")
-		return LEFT_PAREN;
-	if (tokens[pos]->gettype() == "RIGHT_PAREN")
-		return RIGHT_PAREN;
-	if (tokens[pos]->gettype() == "COLON")
-		return COLON;
-	if (tokens[pos]->gettype() == "COLON_DASH")
-		return COLON_DASH;
-	if (tokens[pos]->gettype() == "MULTIPLY")
-		return MULTIPLY;
-	if (tokens[pos]->gettype() == "ADD")
-		return ADD;
-	if (tokens[pos]->gettype() == "SCHEMES")
-		return SCHEMES;
-	if (tokens[pos]->gettype() == "FACTS")
-		return FACTS;
-	if (tokens[pos]->gettype() == "RULES")
-		return RULES;
-	if (tokens[pos]->gettype() == "QUERIES")
-		return QUERIES;
-	if (tokens[pos]->gettype() == "ID")
-		return ID;
-	if (tokens[pos]->gettype() == "STRING")
-		return STRING;
-	return NULL;
+		if (tokens[pos]->gettype() == "PERIOD")
+			return PERIOD;
+		if (tokens[pos]->gettype() == "Q_MARK")
+			return Q_MARK;
+		if (tokens[pos]->gettype() == "LEFT_PAREN")
+			return LEFT_PAREN;
+		if (tokens[pos]->gettype() == "RIGHT_PAREN")
+			return RIGHT_PAREN;
+		if (tokens[pos]->gettype() == "COLON")
+			return COLON;
+		if (tokens[pos]->gettype() == "COLON_DASH")
+			return COLON_DASH;
+		if (tokens[pos]->gettype() == "MULTIPLY")
+			return MULTIPLY;
+		if (tokens[pos]->gettype() == "ADD")
+			return ADD;
+		if (tokens[pos]->gettype() == "SCHEMES")
+			return SCHEMES;
+		if (tokens[pos]->gettype() == "FACTS")
+			return FACTS;
+		if (tokens[pos]->gettype() == "RULES")
+			return RULES;
+		if (tokens[pos]->gettype() == "QUERIES")
+			return QUERIES;
+		if (tokens[pos]->gettype() == "ID")
+			return ID;
+		if (tokens[pos]->gettype() == "STRING")
+			return STRING;
+		if (tokens[pos]->gettype() == "EOF")
+			return end;
+	}
+	return -1;
 }
 Token* Lexicon::returnToken(int pos)
 {
